@@ -143,14 +143,14 @@ function Hero() {
           <motion.div initial="hidden" animate="visible" variants={stagger} className="space-y-8">
             <motion.div variants={fadeUp} className="inline-flex items-center gap-3 rounded-full border border-accent/20 bg-accent/10 px-4 py-2 text-sm font-semibold text-slate-900">
               <Sparkles size={18} className="text-accent" />
-              Coaching chal rahi hai — app jaldi aa rahi hai
+              Best coaching centre in Narnaul — NEET, JEE & Boards
             </motion.div>
             <motion.div variants={fadeUp}>
               <h1 className="text-4xl font-extrabold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
                 NEET, JEE aur Board preparation with <span className="text-accent">Smart AI Learning</span>
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-                Admission khula hai aur coaching live hai. App abhi development mein hai aur jaldi available hogi NEET, JEE aur board students ke liye.
+                Admission khula hai aur coaching live hai. GurTron Narnaul mein best coaching centre hai for NEET coaching, JEE coaching, board exam preparation and AI-backed study support.
               </p>
             </motion.div>
 
