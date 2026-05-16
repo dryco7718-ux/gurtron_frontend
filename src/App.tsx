@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from "react";
+﻿import { useState, useEffect, type FormEvent } from "react";
 import { motion, useScroll, useTransform, AnimatePresence, easeOut } from "framer-motion";
 import {
   Menu,
@@ -25,6 +25,7 @@ import {
   Layers,
   Smartphone,
   Zap,
+  Star,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -32,10 +33,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { toast } from "sonner";
 
-import manojSirImg from "@/assets/manoj-sir.jpg";
-import janviImg from "@/assets/janvi.jpg";
-import yogeshImg from "@/assets/yogesh.jpg";
-import paramjeetImg from "@/assets/paramjeet.jpg";
+import manojSirImg from "@/assets/manoj-sir.jpeg";
+import janviImg from "@/assets/janvi.jpeg";
+import yogeshImg from "@/assets/yogesh.jpeg";
+import kavitaMamImg from "@/assets/kavita-mam.jpeg";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -85,7 +86,7 @@ function Navbar() {
           <a href="#home" className="flex items-center gap-3">
             <div className="w-11 h-11 rounded-2xl bg-primary flex items-center justify-center text-accent font-extrabold shadow-lg shadow-primary/20">GT</div>
             <div>
-              <p className={`text-sm font-semibold tracking-[0.25em] uppercase ${isScrolled ? "text-slate-900" : "text-white"}`}>Gurtron</p>
+              <p className={`text-sm font-semibold tracking-[0.25em] uppercase ${isScrolled ? "text-slate-900" : "text-white"}`}>GurTron</p>
               <p className={`text-xs tracking-[0.3em] uppercase ${isScrolled ? "text-slate-500" : "text-slate-200"}`}>Smart Learning</p>
             </div>
           </a>
@@ -142,14 +143,14 @@ function Hero() {
           <motion.div initial="hidden" animate="visible" variants={stagger} className="space-y-8">
             <motion.div variants={fadeUp} className="inline-flex items-center gap-3 rounded-full border border-accent/20 bg-accent/10 px-4 py-2 text-sm font-semibold text-slate-900">
               <Sparkles size={18} className="text-accent" />
-              Premium AI + Offline Coaching
+              Coaching chal rahi hai — app jaldi aa rahi hai
             </motion.div>
             <motion.div variants={fadeUp}>
               <h1 className="text-4xl font-extrabold tracking-tight text-slate-950 sm:text-5xl lg:text-6xl">
-                NEET, JEE & Board Preparation with <span className="text-accent">Smart AI Learning</span>
+                NEET, JEE aur Board preparation with <span className="text-accent">Smart AI Learning</span>
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-                Trusted offline mentoring combined with AI-powered tests, quizzes and performance tracking.
+                Admission khula hai aur coaching live hai. App abhi development mein hai aur jaldi available hogi NEET, JEE aur board students ke liye.
               </p>
             </motion.div>
 
@@ -174,7 +175,7 @@ function Hero() {
                 <a href="#contact">Join Institute</a>
               </Button>
               <Button asChild variant="outline" className="rounded-full border border-slate-200 bg-white px-6 py-4 font-semibold text-slate-950 hover:border-slate-300 hover:bg-slate-50">
-                <a href="#contact">Download App</a>
+                <a href="#contact">App coming soon</a>
               </Button>
             </motion.div>
 
@@ -201,7 +202,7 @@ function Hero() {
               <div className="flex items-center justify-between rounded-3xl bg-slate-900 px-4 py-3 text-slate-300">
                 <div className="flex items-center gap-3">
                   <span className="h-3 w-3 rounded-full bg-rose-500" />
-                  <span className="text-xs uppercase tracking-[0.3em]">Gurtron App</span>
+                  <span className="text-xs uppercase tracking-[0.3em]">GurTron App</span>
                 </div>
                 <div className="text-xs text-slate-500">Live analytics</div>
               </div>
@@ -254,30 +255,29 @@ function Hero() {
   );
 }
 
-function AboutManoj() {
+function OurStory() {
   return (
-    <section id="about" className="relative overflow-hidden py-24 lg:py-28">
-      <div className="absolute left-0 top-8 h-48 w-48 rounded-full bg-accent/15 blur-3xl" />
+    <section id="about" className="relative overflow-hidden py-24 lg:py-28 bg-slate-50">
       <div className="container mx-auto px-4 lg:px-6">
         <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] items-center">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="space-y-8">
-            <motion.div variants={fadeUp} className="inline-flex items-center gap-3 rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700">
+            <motion.div variants={fadeUp} className="inline-flex items-center gap-3 rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm">
               <BookOpen size={18} className="text-accent" />
-              Meet Manoj Sir
+              Our Story
             </motion.div>
             <motion.h2 variants={fadeUp} className="max-w-3xl text-4xl font-extrabold tracking-tight text-slate-950 sm:text-5xl">
-              The trusted mentor at the heart of Gurtron's smart learning ecosystem.
+              From a small coaching centre to GurTron’s smart learning journey.
             </motion.h2>
             <motion.p variants={fadeUp} className="max-w-2xl text-lg leading-8 text-slate-600">
-              Manoj Sir brings over a decade of classroom coaching experience to Gurtron, blending structured offline teaching with adaptive AI support for every student.
+              GurTron started with a simple goal: help students grow with clear coaching, strong practice and gentle guidance. Today we blend classroom trust with intelligent tools to keep learning practical.
             </motion.p>
 
             <motion.div variants={fadeUp} className="grid gap-4 sm:grid-cols-2">
               {[
-                { value: "14+ years", label: "Teaching" },
-                { value: "NEET, JEE, Boards", label: "Subjects" },
-                { value: "500+ selections", label: "Results" },
-                { value: "Personal mentorship", label: "Philosophy" },
+                { value: "12+ years", label: "Coaching" },
+                { value: "NEET & JEE", label: "Focus" },
+                { value: "1000+ students", label: "Reach" },
+                { value: "Smart support", label: "Approach" },
               ].map((item) => (
                 <div key={item.label} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
                   <p className="text-3xl font-bold text-slate-950">{item.value}</p>
@@ -290,12 +290,12 @@ function AboutManoj() {
           <motion.div initial={{ opacity: 0, x: 70 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.75, ease: easeOut }} className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-5 shadow-2xl">
             <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent" />
             <div className="relative overflow-hidden rounded-[1.75rem] border border-slate-100 bg-slate-900">
-              <img src={manojSirImg} alt="Manoj Sir" className="h-[460px] w-full object-cover object-center" />
+              <img src={manojSirImg} alt="GurTron journey" className="h-[460px] w-full object-cover object-center" />
             </div>
             <div className="relative mt-6 rounded-[1.75rem] border border-slate-200 bg-slate-50 p-6 shadow-sm">
-              <p className="text-slate-900 text-lg font-semibold">Mentorship Philosophy</p>
+              <p className="text-slate-900 text-lg font-semibold">Simple growth with smart support</p>
               <p className="mt-3 text-slate-600 leading-7">
-                Real learning starts with trust, clarity and confidence. Manoj Sir focuses on concepts, revision clarity and performance habits that last beyond exams.
+                We keep the experience grounded: real mentors, strong practice and careful tracking. GurTron is designed to grow step by step, not to overwhelm.
               </p>
             </div>
           </motion.div>
@@ -333,7 +333,7 @@ function Features() {
     <section id="features" className="py-24 lg:py-28 bg-slate-50">
       <div className="container mx-auto px-4 lg:px-6">
         <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">Gurtron App</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">GurTron App</p>
           <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-950 sm:text-5xl">Powerful edtech features built for modern students.</h2>
           <p className="mt-5 text-lg leading-8 text-slate-600">A smart platform that supports offline teaching with AI-backed preparation at every step.</p>
         </div>
@@ -350,10 +350,10 @@ function Features() {
 
 function Courses() {
   const courses = [
-    { title: "NEET", description: "Complete medical entrance preparation with AI-guided revision.", subjects: "Physics, Chemistry, Biology", duration: "12 months", icon: HeartPulse },
-    { title: "JEE", description: "Advanced engineering coaching with concept-driven practice.", subjects: "Physics, Chemistry, Maths", duration: "12 months", icon: Cpu },
-    { title: "CBSE", description: "Board-focused learning for Class 11 and 12 with test support.", subjects: "All subjects", duration: "6-12 months", icon: GraduationCap },
-    { title: "HBSE", description: "HBSE board coaching with targeted revision and exam strategy.", subjects: "All subjects", duration: "6-12 months", icon: ShieldCheck },
+    { title: "NEET", description: "Medical entrance coaching with AI-backed biology and chemistry focus.", subjects: "Physics, Chemistry, Biology", duration: "12 months", icon: HeartPulse },
+    { title: "JEE", description: "Engineering stream preparation with physics, maths and problem-solving mastery.", subjects: "Physics, Chemistry, Maths", duration: "12 months", icon: Cpu },
+    { title: "CBSE", description: "Board exam readiness with subjectwise practice, tests and score-building support.", subjects: "All subjects", duration: "6-12 months", icon: GraduationCap },
+    { title: "HBSE", description: "HBSE board coaching with exam strategy, revision routines and doubt support.", subjects: "All subjects", duration: "6-12 months", icon: ShieldCheck },
   ];
 
   return (
@@ -400,16 +400,16 @@ function Different() {
     <section className="py-24 lg:py-28 bg-slate-50">
       <div className="container mx-auto px-4 lg:px-6">
         <div className="mb-12 max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">Why Gurtron</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">Why GurTron</p>
           <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-950 sm:text-5xl">Modern coaching built for smarter results.</h2>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">Gurtron is not just a coaching institute. It is an intelligent education ecosystem that blends expert guidance with powerful AI tools.</p>
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">GurTron is not just a coaching institute. It is an intelligent education ecosystem that blends expert guidance with powerful AI tools.</p>
         </div>
 
         <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
           <div className="grid grid-cols-1 gap-1 bg-slate-100 px-6 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-slate-500 sm:grid-cols-[1fr_1fr_1fr]">
             <div className="sm:col-span-1">Comparison</div>
             <div className="sm:col-span-1">Traditional Coaching</div>
-            <div className="sm:col-span-1">Gurtron Smart Learning</div>
+            <div className="sm:col-span-1">GurTron Smart Learning</div>
           </div>
           <div className="divide-y divide-slate-200">
             {rows.map((row) => (
@@ -458,6 +458,8 @@ function CountUp({ end, title }: { end: number; title: string }) {
 }
 
 function Results() {
+  const [showAll, setShowAll] = useState(false);
+
   const stats = [
     { title: "Students Mentored", value: 1200 },
     { title: "Tests Conducted", value: 4300 },
@@ -468,16 +470,22 @@ function Results() {
   const toppers = [
     { name: "Janvi", score: "100/100", subject: "Physics", image: janviImg },
     { name: "Yogesh", score: "99.8%", subject: "Biology", image: yogeshImg },
-    { name: "Paramjeet", score: "Rank 8", subject: "Chemistry", image: paramjeetImg },
+    { name: "Kavita Mam", score: "CBSE Toppers", subject: "Science & Boards", image: kavitaMamImg },
+  ];
+
+  const extraAchievements = [
+    { title: "120+ selections", description: "Students selected in NEET, JEE and board exams." },
+    { title: "50+ top 100 ranks", description: "High performers across all competitive streams." },
+    { title: "200+ distinctions", description: "Strong board results from GurTron guidance." },
   ];
 
   return (
     <section id="results" className="py-24 lg:py-28">
       <div className="container mx-auto px-4 lg:px-6">
         <div className="mb-12 max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">Results</p>
-          <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-950 sm:text-5xl">Proven achievements from real Gurtron students.</h2>
-          <p className="mt-5 text-lg leading-8 text-slate-600">Highlights from toppers and successful selections in NEET, JEE and board exams.</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">Achievements</p>
+          <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-950 sm:text-5xl">Recent top achievers from GurTron.</h2>
+          <p className="mt-5 text-lg leading-8 text-slate-600">We highlight the best 3-4 achievements here. Click to view more success stories and batch performance details.</p>
         </div>
 
         <div className="grid gap-6 lg:grid-cols-3">
@@ -500,11 +508,29 @@ function Results() {
                   <h3 className="text-xl font-semibold text-slate-950">{topper.name}</h3>
                   <span className="rounded-full bg-accent/10 px-3 py-1 text-sm font-semibold text-accent">{topper.score}</span>
                 </div>
-                <p className="mt-4 text-sm leading-6 text-slate-600">Gurtron student achieving strong board and entrance exam performance through blended coaching.</p>
+                <p className="mt-4 text-sm leading-6 text-slate-600">GurTron student achieving strong board and entrance exam performance through blended coaching.</p>
               </div>
             </motion.div>
           ))}
         </div>
+
+        <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-slate-600">Only the top results are shown here. Toggle to see more achievements and key student stats.</p>
+          <Button type="button" onClick={() => setShowAll(!showAll)} className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-slate-950 shadow-md shadow-accent/20 hover:bg-yellow-400">
+            {showAll ? "Hide details" : "View all achievements"}
+          </Button>
+        </div>
+
+        {showAll && (
+          <div className="mt-8 grid gap-6 lg:grid-cols-3">
+            {extraAchievements.map((item) => (
+              <div key={item.title} className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+                <p className="text-2xl font-bold text-slate-950">{item.title}</p>
+                <p className="mt-3 text-sm leading-6 text-slate-600">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
@@ -564,32 +590,81 @@ function Screenshots() {
 
 function Testimonials() {
   const reviews = [
-    { name: "Aditi Sharma", exam: "NEET", content: "Gurtron made my prep feel crisp, focused and connected to real exam patterns. The blend of offline coaching and AI tests was a game changer.", image: janviImg },
-    { name: "Rohit Kumar", exam: "JEE", content: "I loved the analytics dashboard. It helped me track weak chapters and gave me confidence in the final months.", image: yogeshImg },
-    { name: "Priya Singh", exam: "CBSE", content: "Manoj Sir's guidance plus the app’s daily quizzes helped me stay consistent without pressure.", image: paramjeetImg },
+    { name: "Aditi Sharma", exam: "NEET", content: "GurTron made my prep feel crisp, focused and connected to real exam patterns.", image: janviImg },
+    { name: "Rohit Kumar", exam: "JEE", content: "The analytics dashboard helped me track weak chapters and gain confidence for the final months.", image: yogeshImg },
+    { name: "Priya Singh", exam: "CBSE", content: "The coaching and daily revision made it easy to stay consistent and improve every week.", image: kavitaMamImg },
+    { name: "Sakshi Verma", exam: "NEET", content: "Smart practice and mentor feedback made the preparation feel simple and strong.", image: manojSirImg },
   ];
 
+  const [rating, setRating] = useState(5);
+  const [reviewText, setReviewText] = useState("");
+  const [sentReview, setSentReview] = useState(false);
+
+  const handleReviewSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSentReview(true);
+    toast.success("Review submitted!", { description: "Thank you for sharing feedback with GurTron." });
+    setReviewText("");
+    setRating(5);
+    setTimeout(() => setSentReview(false), 2500);
+  };
+
   return (
-    <section id="testimonials" className="py-24 lg:py-28">
+    <section id="testimonials" className="py-24 lg:py-28 bg-slate-50">
       <div className="container mx-auto px-4 lg:px-6">
         <div className="mb-12 max-w-3xl">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">Testimonials</p>
-          <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-950 sm:text-5xl">What students say about Gurtron.</h2>
+          <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-950 sm:text-5xl">What students say about GurTron.</h2>
+          <p className="mt-5 text-lg leading-8 text-slate-600">Real reviews from our students and parents, plus a space to add your own 5-star feedback.</p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-3">
-          {reviews.map((review) => (
-            <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.25 }} key={review.name} className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">
-              <div className="flex items-center gap-4">
-                <img src={review.image} alt={review.name} className="h-14 w-14 rounded-2xl object-cover" />
-                <div>
-                  <h3 className="text-lg font-semibold text-slate-950">{review.name}</h3>
-                  <p className="text-sm text-slate-500">{review.exam} preparation</p>
+        <div className="grid gap-6 xl:grid-cols-[1.4fr_0.8fr]">
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-2">
+            {reviews.map((review) => (
+              <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.25 }} key={review.name} className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">
+                <div className="flex items-center gap-4">
+                  <img src={review.image} alt={review.name} className="h-14 w-14 rounded-2xl object-cover object-center" />
+                  <div>
+                    <h3 className="text-lg font-semibold text-slate-950">{review.name}</h3>
+                    <p className="text-sm text-slate-500">{review.exam} preparation</p>
+                  </div>
+                </div>
+                <p className="mt-6 text-sm leading-7 text-slate-600">“{review.content}”</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.25 }} className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">
+            <h3 className="text-2xl font-semibold text-slate-950">Share your own review</h3>
+            <p className="mt-3 text-sm leading-6 text-slate-600">Select stars, write your feedback, and help others understand GurTron’s learning experience.</p>
+
+            <form onSubmit={handleReviewSubmit} className="mt-8 space-y-5">
+              <div>
+                <p className="text-sm font-semibold text-slate-700">Your rating</p>
+                <div className="mt-3 flex items-center gap-2">
+                  {[1, 2, 3, 4, 5].map((value) => (
+                    <button
+                      key={value}
+                      type="button"
+                      onClick={() => setRating(value)}
+                      className={`rounded-full p-2 transition ${rating >= value ? "bg-accent text-slate-950" : "bg-slate-100 text-slate-500"}`}
+                    >
+                      <Star size={18} />
+                    </button>
+                  ))}
                 </div>
               </div>
-              <p className="mt-6 text-sm leading-7 text-slate-600">“{review.content}”</p>
-            </motion.div>
-          ))}
+
+              <div>
+                <label className="text-sm font-semibold text-slate-700">Review</label>
+                <Textarea value={reviewText} onChange={(e) => setReviewText(e.target.value)} required placeholder="Write your experience" className="mt-3 bg-slate-50" rows={5} />
+              </div>
+
+              <Button type="submit" className="w-full rounded-full bg-accent px-6 py-4 text-base font-semibold text-slate-950 shadow-md shadow-accent/20 hover:bg-yellow-400">
+                {sentReview ? "Submitted" : "Submit review"}
+              </Button>
+            </form>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -608,7 +683,7 @@ function HowItWorks() {
     <section id="how" className="py-24 lg:py-28 bg-slate-50">
       <div className="container mx-auto px-4 lg:px-6">
         <div className="mb-12 max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">How Gurtron Works</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">How GurTron Works</p>
           <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-950 sm:text-5xl">A smooth four-step path to smarter exam readiness.</h2>
         </div>
 
@@ -631,10 +706,10 @@ function HowItWorks() {
 
 function FAQ() {
   const faqs = [
-    { q: "How does Gurtron work?", a: "Gurtron blends offline coaching with AI-driven tests, progress analytics and personalised practice plans." },
-    { q: "Is app access included?", a: "Yes, every student gets Gurtron app access as part of the program, with tests and analytics included." },
+    { q: "How does GurTron work?", a: "GurTron blends offline coaching with AI-driven tests, progress analytics and personalised practice plans." },
+    { q: "Is app access included?", a: "Yes, every student gets GurTron app access as part of the program, with tests and analytics included." },
     { q: "Which classes are supported?", a: "We support NEET, JEE, CBSE and HBSE students across Class 11, 12 and repeaters." },
-    { q: "Is it for NEET/JEE only?", a: "No. While our focus is NEET and JEE, Gurtron also offers strong board preparation and foundation support." },
+    { q: "Is it for NEET/JEE only?", a: "No. While our focus is NEET and JEE, GurTron also offers strong board preparation and foundation support." },
     { q: "Are tests AI generated?", a: "Yes. Our platform generates AI-aligned tests and quizzes based on your progress, practice history and weak topics." },
   ];
 
@@ -664,7 +739,7 @@ function FAQ() {
 function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setTimeout(() => {
@@ -682,7 +757,7 @@ function Contact() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="space-y-8">
             <motion.div variants={fadeUp}>
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">Contact</p>
-              <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-white sm:text-5xl">Connect with Gurtron and book your seat.</h2>
+              <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-white sm:text-5xl">Connect with GurTron and book your seat.</h2>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">Visit the institute, chat on WhatsApp, or submit your details for a personalised demo.</p>
             </motion.div>
 
@@ -691,8 +766,7 @@ function Contact() {
                 <div className="rounded-2xl bg-accent/10 p-3 text-accent"><Phone size={20} /></div>
                 <div>
                   <p className="text-sm uppercase tracking-[0.3em] text-slate-400">Phone</p>
-                  <a href="tel:+919996655191" className="mt-2 block text-lg font-semibold text-white">+91 99966-55191</a>
-                  <a href="tel:+918295852556" className="mt-1 block text-sm text-slate-400">+91 82958-52556</a>
+                  <a href="tel:+918295852556" className="mt-2 block text-lg font-semibold text-white">+91 82958 52556</a>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -718,7 +792,7 @@ function Contact() {
               <iframe
                 src="https://maps.app.goo.gl/dggbBmyUmo2CdSot6"
                 className="h-full w-full"
-                title="Gurtron Institute Location"
+                title="GurTron Institute Location"
                 loading="lazy"
               />
             </motion.div>
@@ -727,7 +801,7 @@ function Contact() {
           <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, ease: easeOut }}>
             <div className="rounded-[2rem] border border-white/10 bg-white p-8 shadow-2xl">
               <h3 className="text-3xl font-semibold text-slate-950">Inquiry Form</h3>
-              <p className="mt-3 text-slate-600">Submit your details and our Gurtron counsellor will reach out with the best program recommendation.</p>
+              <p className="mt-3 text-slate-600">Submit your details and our GurTron counsellor will reach out with the best program recommendation.</p>
 
               <form onSubmit={handleSubmit} className="mt-8 space-y-5">
                 <div>
@@ -767,11 +841,11 @@ function Footer() {
             <div className="flex items-center gap-3">
               <div className="flex h-12 w-12 items-center justify-center rounded-3xl bg-accent text-slate-950 text-xl font-bold">GT</div>
               <div>
-                <p className="text-lg font-semibold text-white">Gurtron</p>
+                <p className="text-lg font-semibold text-white">GurTron</p>
                 <p className="text-sm uppercase tracking-[0.3em] text-slate-500">Smart Learning</p>
               </div>
             </div>
-            <p className="max-w-sm text-sm leading-7 text-slate-400">Gurtron — Smart Learning for Future Achievers. Blending trusted classroom coaching with adaptive AI tools for NEET, JEE and board success.</p>
+            <p className="max-w-sm text-sm leading-7 text-slate-400">GurTron — Smart Learning for Future Achievers. Blending trusted classroom coaching with adaptive AI tools for NEET, JEE and board success.</p>
             <Button asChild className="rounded-full bg-accent px-5 py-3 font-semibold text-slate-950 shadow-md shadow-accent/20 hover:bg-yellow-400">
               <a href="#contact">Download App</a>
             </Button>
@@ -801,15 +875,14 @@ function Footer() {
           <div>
             <h4 className="text-sm font-semibold uppercase tracking-[0.3em] text-slate-400">Contact</h4>
             <div className="mt-6 space-y-4 text-sm text-slate-400">
-              <p>+91 99966-55191</p>
-              <p>+91 82958-52556</p>
+              <p>+91 82958 52556</p>
               <p>info@gurtroninstitute.com</p>
               <p>Near City Kids, Sain Chowk, Narnaul</p>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 border-t border-slate-800 pt-8 text-sm text-slate-500">© 2026 Gurtron — Smart Learning for Future Achievers.</div>
+        <div className="mt-12 border-t border-slate-800 pt-8 text-sm text-slate-500">© 2026 GurTron — Smart Learning for Future Achievers.</div>
       </div>
     </footer>
   );
@@ -817,7 +890,7 @@ function Footer() {
 
 function WhatsAppFab() {
   return (
-    <a href="https://wa.me/919996655191" target="_blank" rel="noreferrer" className="fixed bottom-6 right-6 z-50 inline-flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl shadow-[#25D366]/30 transition-transform hover:-translate-y-1">
+    <a href="https://wa.me/918295852556" target="_blank" rel="noreferrer" className="fixed bottom-6 right-6 z-50 inline-flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl shadow-[#25D366]/30 transition-transform hover:-translate-y-1">
       <MessageCircle size={28} />
     </a>
   );
@@ -830,7 +903,6 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
-        <AboutManoj />
         <Features />
         <Courses />
         <Different />
@@ -840,6 +912,7 @@ export default function App() {
         <HowItWorks />
         <FAQ />
         <Contact />
+        <OurStory />
       </main>
       <Footer />
       <WhatsAppFab />
